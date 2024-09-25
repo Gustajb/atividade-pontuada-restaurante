@@ -14,41 +14,53 @@ import os
 os.system("cls || clear") 
 
 print("""
-escreva o código do prato para fazer o pedido:
-cÓdigo = Menu                |Valor |
-1      = Picanha             |25,00 |
-2      = lasanha             |20,00 |
-3      = Strogonoff          |18,00 |
-4      = Bife acebolado      |15,00 |
-5      = Pão com ovo         |5,00  |  
-6      = Frango à parmegiana |30,00 |
-7      = Filé de porco       |27,00 |  
+      1 - Picanha 
+      2 - Lasanha 
+      3 - Strogonoff 
+      4 - Bife acebolado 
+      5 - Pão com ovo 
+      6 - Frango a Parmegiana 
+      7 - Filé de Porco 
       """)
 
-Codigo_Prato =(input("Digite o Código do seu Prato: "))
-
-resultado = 0
-
-match(Codigo_Prato):
-    case "1":
-        print("Picanha R$ 25,00")
-    case "2":
-        print("Lasanhha R$20,00")
-    case "3":
-        print("Strogonoff R$18,00")
-    case "4":
-        print("Bife acebolado R$15,00")
-    case "5":
-        print("Pão com ovo R$5,00")
-    case "6":
-        print("Frango à parmegiana R$30,00")
-    case "7":
-        print("Filé de porco R$27,00")
-    case "0":
-        print("Opção invalida, Por favor digite um Código Valido.")
-
+def exibir_menu(codigo_prato):
+    match(codigo_prato):
+        case 1:
+            return "Picanha R$ 25,00",25
+        case 2:
+            return "Lasanha R$ 20,00",20
+        case 3:
+            return "Strogonoff R$ 18,00",18
+        case 4:
+            return "Bife acebolado R$ 15,00",15
+        case 5:
+            return "Pão com ovo R$ 5,00",5
+        case 6:
+            return "Frango a Parmegiana R$ 30,00",30
+        case 7:
+            return "Filé de Porco R$ 27,00",27
+        case _:
+            return None,0
         
+pedido_cliente = []
+total_pedido = 0
 
+while True:
+    codigo_prato = int(input("Digite o código do prato que deseja: "))
+    prato, preco = exibir_menu(codigo_prato)
+    if prato is None:
+        print("Código inválido, digite o código novamente: ")
+    else:
+        print(f"Prato escolhido: {prato}")
+        pedido_cliente.append(prato)
+        total_pedido += preco
 
-print("=== FIM ===")  
+    adicionar = input("Deseja adicionar mais algum prato (sim/não)? ")
+    if adicionar != 'sim':
+        break
 
+print("\n=== Pedidos realizados ===")
+for item in pedido_cliente:
+    print(f"-{item}")
+print(f"Total a pagar: R$ {total_pedido:.2f}")
+print("=== FIM ===")
