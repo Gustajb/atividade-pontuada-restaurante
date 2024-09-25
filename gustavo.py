@@ -20,10 +20,24 @@ print("""
 1 - À vista 
 2 - Cartão de crédito
       """)
-pagamento = int(input("Digite 1 para pagamento à vista ou 2 para cartão de crédito"))
+pagamento = int(input("Digite 1 para pagamento à vista ou 2 para cartão de crédito: "))
+
+desconto = total_pedido * 0.10
+acrescimo = total_pedido * 0.10
 
 if pagamento == 1:
-    valor_final = valor_total * 0,10
+    desconto_ou_acrescimo = desconto
+    valor_com_desconto_ou_acrescimo = total_pedido - desconto
+    forma_de_pagamento = "À vista"
 else:
-    valor_final = valor_total + (valor_total * 0,10)
+    desconto_ou_acrescimo = acrescimo
+    valor_com_desconto_ou_acrescimo = total_pedido + acrescimo
+    forma_de_pagamento = "Cartão de crédito"
 
+print("=== PEDIDO ===")
+for item in pedido_cliente:
+    print(f"{item}")
+print(f"Valor sem acréscimo ou desconto: R$ {total_pedido:.2f}")
+print(f"Forma de pagamento: {forma_de_pagamento}")
+print(f"Valor do acréscimo ou desconto: R$ {desconto_ou_acrescimo}")
+print(f"Total a pagar: R$ {valor_com_desconto_ou_acrescimo}")
